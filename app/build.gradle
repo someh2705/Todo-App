@@ -1,7 +1,11 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
+
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdk 31
@@ -41,6 +45,7 @@ android {
         kotlinCompilerVersion '1.5.21'
     }
     packagingOptions {
+        exclude 'META-INF/proguard/androidx-annotations.pro'
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
@@ -48,6 +53,7 @@ android {
 }
 
 dependencies {
+    def lifecycle_version = "2.4.0"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.0'
@@ -62,4 +68,19 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+
+    // viewmodel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version"
+    implementation 'androidx.activity:activity-ktx:1.4.0'
+    implementation 'androidx.fragment:fragment-ktx:1.4.0'
+
+    // livedata
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
+
+    // Hilt
+    implementation "com.google.dagger:hilt-android:2.40.1"
+    kapt "com.google.dagger:hilt-android-compiler:2.40.1"
+    implementation 'androidx.hilt:hilt-navigation-compose:1.0.0-beta01'
 }
