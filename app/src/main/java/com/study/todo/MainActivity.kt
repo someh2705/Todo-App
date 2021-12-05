@@ -27,6 +27,10 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String) {
     Text(text = "Hello $name!")
+data class Example(
+    val id: Int? = null,
+    val message: String = "Hello World"
+)
 }
 
 @Preview(showBackground = true)
