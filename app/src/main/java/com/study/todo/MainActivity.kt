@@ -31,6 +31,26 @@ data class Example(
     val id: Int? = null,
     val message: String = "Hello World"
 )
+
+interface ExampleRepository {
+    fun getMessage(): List<Example>
+}
+
+class FakeExampleRepository : ExampleRepository {
+    override fun getMessage(): List<Example> {
+        return listOf(
+            Example(message = "Hello World #1"),
+            Example(message = "Hello World #2"),
+            Example(message = "Hello World #3"),
+            Example(message = "Hello World #4"),
+            Example(message = "Hello World #5"),
+            Example(message = "Hello World #6"),
+            Example(message = "Hello World #7"),
+            Example(message = "Hello World #8"),
+            Example(message = "Hello World #9"),
+        )
+    }
+}
 }
 
 @Preview(showBackground = true)
