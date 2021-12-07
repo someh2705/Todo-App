@@ -62,6 +62,24 @@ object RepositoryModule {
         return FakeExampleRepository()
     }
 }
+
+@HiltViewModel
+class ExampleViewModel @Inject constructor(
+    private val repository: ExampleRepository
+) : ViewModel() {
+    private val _example: MutableLiveData<List<Example>> = MutableLiveData()
+    val example: LiveData<List<Example>> = _example
+
+    init {
+        loadExample()
+    }
+
+    fun loadExample() {
+        repository.getMessage().let {
+            _example.postValue(it)
+        }
+    }
+}
 }
 
 @Preview(showBackground = true)
