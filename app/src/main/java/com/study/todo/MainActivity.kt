@@ -51,6 +51,17 @@ class FakeExampleRepository : ExampleRepository {
         )
     }
 }
+
+@Module
+@InstallIn(SingletonComponent::class)
+object RepositoryModule {
+
+    @Singleton
+    @Provides
+    fun providesExampleRepository(): ExampleRepository {
+        return FakeExampleRepository()
+    }
+}
 }
 
 @Preview(showBackground = true)
