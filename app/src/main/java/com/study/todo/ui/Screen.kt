@@ -1,4 +1,7 @@
 package com.study.todo.ui
 
-class Screen {
+enum class Screen(
+    val route: String
+) {
+    HOME("/home")
 }
